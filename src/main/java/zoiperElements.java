@@ -492,19 +492,19 @@ public class zoiperElements {
                 ("new UiSelector().description(\"Done\");"));
         return mobileElement;
     }
-//TODO
+
     public static WebElement elementDialedAndroidNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedAndroidNumber+"\");"));
         return mobileElement;
     }
-//TODO
+
     public static WebElement mergedAndroidNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedAndroidNumber+" ("+dialedAndroidNumber+")\");"));
         return mobileElement;
     }
-//TODO
+
     public static WebElement mergedDesktopNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedDesktopNumber+" ("+dialedDesktopNumber+")\");"));
