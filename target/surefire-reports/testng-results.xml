@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
+  <reporter-output>
+  </reporter-output>
+  <suite name="All Test Suite" duration-ms="109556" started-at="2020-09-16T10:37:17Z" finished-at="2020-09-16T10:39:06Z">
+    <groups>
+    </groups>
+    <test name="ZoiperTests" duration-ms="109556" started-at="2020-09-16T10:37:17Z" finished-at="2020-09-16T10:39:06Z">
+      <class name="CrashTests">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:CrashTests@6cc4c815]" name="setUp" is-config="true" duration-ms="34960" started-at="2020-09-16T10:37:17Z" finished-at="2020-09-16T10:37:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method status="PASS" signature="enterDiagnostics()[pri:1, instance:CrashTests@6cc4c815]" name="enterDiagnostics" duration-ms="35905" started-at="2020-09-16T10:37:52Z" finished-at="2020-09-16T10:38:27Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- enterDiagnostics -->
+        <test-method status="PASS" signature="simulateJavaCrash()[pri:2, instance:CrashTests@6cc4c815]" name="simulateJavaCrash" duration-ms="15653" started-at="2020-09-16T10:38:27Z" finished-at="2020-09-16T10:38:43Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- simulateJavaCrash -->
+        <test-method status="PASS" signature="simulateNativeCrash()[pri:3, instance:CrashTests@6cc4c815]" name="simulateNativeCrash" duration-ms="13695" started-at="2020-09-16T10:38:43Z" finished-at="2020-09-16T10:38:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- simulateNativeCrash -->
+        <test-method status="PASS" signature="simulateANRCrash()[pri:4, instance:CrashTests@6cc4c815]" name="simulateANRCrash" duration-ms="9311" started-at="2020-09-16T10:38:57Z" finished-at="2020-09-16T10:39:06Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- simulateANRCrash -->
+      </class> <!-- CrashTests -->
+    </test> <!-- ZoiperTests -->
+  </suite> <!-- All Test Suite -->
+</testng-results>
