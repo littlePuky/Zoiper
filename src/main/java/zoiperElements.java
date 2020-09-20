@@ -493,19 +493,19 @@ public class zoiperElements {
         return mobileElement;
     }
 //TODO
-    public static WebElement fourTensNumber(AndroidDriver<AndroidElement> driver) {
+    public static WebElement elementDialedAndroidNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedAndroidNumber+"\");"));
         return mobileElement;
     }
 //TODO
-    public static WebElement mergedFourOnesNumber(AndroidDriver<AndroidElement> driver) {
+    public static WebElement mergedAndroidNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedAndroidNumber+" ("+dialedAndroidNumber+")\");"));
         return mobileElement;
     }
 //TODO
-    public static WebElement mergedTwoFortysNumber(AndroidDriver<AndroidElement> driver) {
+    public static WebElement mergedDesktopNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedDesktopNumber+" ("+dialedDesktopNumber+")\");"));
         return mobileElement;
