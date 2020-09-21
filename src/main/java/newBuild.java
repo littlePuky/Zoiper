@@ -19,5 +19,8 @@ public class newBuild extends DriverSetup {
     void networkChanges() {
 
         System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
     }
 }
