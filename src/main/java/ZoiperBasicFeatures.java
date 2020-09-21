@@ -48,7 +48,12 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.skipButton(driver).click();
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
-//        zoiperElements.YESbutton(driver).click();
+        try {
+            zoiperElements.YESButton(driver).click();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
+
 //        zoiperElements.doNotDisturbButton(driver).click();
 //        zoiperElements.zoiperFreeDoNotDisturb(driver).click();
 //        driver.switchTo().alert().accept();
@@ -512,7 +517,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         try {
             zoiperElements.OKButton(driver).click();
         } catch (NoSuchElementException e) {
-            System.out.println("OK");
+            e.printStackTrace();
         }
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.defaultAccNumber);

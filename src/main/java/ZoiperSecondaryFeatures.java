@@ -30,7 +30,11 @@ public class ZoiperSecondaryFeatures extends activeDriver {
         zoiperElements.skipButton(driver).click();
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
-//        zoiperElements.YESbutton(driver).click();
+        try {
+            zoiperElements.YESButton(driver).click();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
 //        zoiperElements.doNotDisturbButton(driver).click();
 //        zoiperElements.zoiperFreeDoNotDisturb(driver).click();
 //        driver.switchTo().alert().accept();

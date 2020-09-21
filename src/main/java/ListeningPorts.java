@@ -27,9 +27,11 @@ public class ListeningPorts extends DriverSetup {
         zoiperElements.skipButton(driver).click();
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
-//        driver.switchTo().alert().accept();
-//        driver.switchTo().alert().accept();
-//        zoiperElements.YESbutton(driver).click();
+        try {
+            zoiperElements.YESButton(driver).click();
+        } catch (NoSuchElementException e) {
+            e.printStackTrace();
+        }
 //        zoiperElements.doNotDisturbButton(driver).click();
 //        zoiperElements.zoiperFreeDoNotDisturb(driver).click();
 //        driver.switchTo().alert().accept();
