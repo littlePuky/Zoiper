@@ -29,7 +29,6 @@ public class zoiperElements {
     public static String viewGroupClass = "android.view.ViewGroup";
     public static String textViewClass = "android.widget.TextView";
     public static String accListId = "com.zoiper.android.app:id/account_list_row_id";
-    public static String messagesListClass = "android.widget.RelativeLayout";
     public static String flipperId = "com.zoiper.android.app:id/viewFlipper";
     public static String googlePlayAcc = "qa4.zoiper@gmail.com";
 
@@ -649,6 +648,13 @@ public class zoiperElements {
         element = driver.findElement(By.id("com.zoiper.android.app:id/screen_wait_text"));
         return element;
     }
+
+    public static WebElement messageThread(AndroidDriver<AndroidElement> driver) {
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().text(\""+dialedAndroidNumber+"\");"));
+        return mobileElement;
+    }
+
 
     public static WebElement presenceIcon(AndroidDriver<AndroidElement> driver) {
 

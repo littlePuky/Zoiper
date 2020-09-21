@@ -9,14 +9,14 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ZoiperBasicFeatures extends DriverSetup {
+public class ZoiperBasicFeatures extends activeDriver {
 
 
-    @Test (priority = 1)
+    @Test(priority = 1)
     void AccountRegister() throws InterruptedException {
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.agreeButton(driver).click();
         try {
             String subButtonYearlyText = zoiperElements.subscribeButton(driver).getText();
@@ -61,7 +61,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 1)
     void makeCall() {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
         zoiperElements.dialButton(driver).click();
@@ -97,7 +97,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 2)
     void accessAccountSettingsTroughNavDrawer() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.accountArrowNavigationDrawer(driver).click();
         zoiperElements.addAccountNavDrawerButton(driver).click();
@@ -109,7 +109,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 3)
     void pushLock() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.connectivity(driver).click();
@@ -121,7 +121,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 4)
     void customizeLock() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperSettingsElements.customize(driver).click();
         zoiperSettingsElements.lockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
@@ -131,7 +131,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 5)
     void callsLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperSettingsElements.calls(driver).click();
         int locks = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
         zoiperElements.navigateBack(driver).click();
@@ -141,7 +141,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 6)
     void audioCodecsAndPresenceLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperSettingsElements.accounts(driver).click();
         accountsSettings.defaultAccountSelect(driver).click();
         Actions builder = new Actions(driver);
@@ -163,7 +163,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 7)
     void videoCodecsLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        zoiperSettingsElements.accounts(driver).click();
 //        accountsSettings.firstAccountSelect(driver).click();
         accountsSettings.videoCodecSettings(driver).click();
@@ -175,7 +175,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 8)
     void encryptionLock() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        zoiperSettingsElements.accounts(driver).click();
 //        accountsSettings.firstAccountSelect(driver).click();
         accountsSettings.encryption(driver).click();
@@ -190,7 +190,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 9)
     void callRecordingsLock() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.callRecordingNavigationDrawer(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
@@ -201,7 +201,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 10)
     void inCallLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
@@ -217,7 +217,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 11)
     void subscribe() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.premiumFeaturesNavigationDrawer(driver).click();
         zoiperElements.freeTrial(driver).click();
@@ -243,7 +243,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 12)
     void recheckLocks() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.navigationDrawer(driver).click();
@@ -252,7 +252,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 13)
     void retestPushLock() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperSettingsElements.connectivity(driver).click();
         int push = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
         Assert.assertEquals(push, 0);
@@ -260,7 +260,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 14)
     void retestCustomizeLock() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigateBack(driver).click();
         Thread.sleep(1000);
         zoiperSettingsElements.customize(driver).click();
@@ -271,7 +271,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 15)
     void retestCallsLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperSettingsElements.calls(driver).click();
         int locks = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
         zoiperElements.navigateBack(driver).click();
@@ -280,7 +280,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 16)
     void retestAudioCodecsAndPresenceLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         zoiperSettingsElements.accounts(driver).click();
         accountsSettings.defaultAccountSelect(driver).click();
@@ -297,14 +297,14 @@ public class ZoiperBasicFeatures extends DriverSetup {
         accountsSettings.opusSuper(driver).isDisplayed();
         int audioLocks2 = driver.findElements(By.id(zoiperElements.codecLockId)).size();
         zoiperElements.navigateBack(driver).click();
-        Assert.assertEquals(presenceLock,0);
+        Assert.assertEquals(presenceLock, 0);
         Assert.assertEquals((audioLocks1 + audioLocks2), 0);
         //TODO verify presence is working
     }
 
     @Test(priority = 17)
     void retestVideoCodecsLocksCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        zoiperSettingsElements.accounts(driver).click();
 //        accountsSettings.firstAccountSelect(driver).click();
         accountsSettings.videoCodecSettings(driver).click();
@@ -315,7 +315,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 18)
     void retestEncryptionLock() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        zoiperSettingsElements.accounts(driver).click();
 //        accountsSettings.firstAccountSelect(driver).click();
         accountsSettings.encryption(driver).click();
@@ -329,7 +329,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 19)
     void inCallLocksReCount() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//bad connection
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
@@ -342,7 +342,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 20)
     void unlockedVideoCall() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        zoiperElements.dialPadButton(driver).click();
 //        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
 //        zoiperElements.dialButton(driver).click();
@@ -358,7 +358,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 21)
     void unlockedAddAndMergeCalls() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         incallElements.threeDots(driver).click();
         incallElements.addCall(driver).click();
         zoiperElements.dialPadButton(driver).click();
@@ -378,7 +378,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 22)
     void unlockedCallRecord() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
@@ -392,7 +392,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 23)
     void transferCall() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
@@ -409,7 +409,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 24)
     void addContact() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.contactsButton(driver).click();
 //        zoiperElements.turnOnButton(driver).click();
 //        driver.switchTo().alert().accept();
@@ -429,7 +429,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 25)
     void sendMessage() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.messagesMenuButton(driver).click();
         zoiperElements.startMessageButton(driver).click();
@@ -441,7 +441,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 26)
     void accessHistory() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.historyButton(driver).click();
         zoiperElements.presenceIcon(driver).isDisplayed();
         //TODO verify Presence is displaying the proper status
@@ -452,7 +452,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 27)
     void clickAndHoldToCopyNumberFromContact() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 //        zoiperElements.dialPadButton(driver).click();
 //        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
@@ -475,7 +475,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 28)
     void clickAndHoldEditNumberBeforeCall() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        zoiperElements.dialPadButton(driver).click();
 //        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
 //        zoiperElements.dialButton(driver).click();
@@ -492,7 +492,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 29)
     void pushCall() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
 //        driver.activateApp("com.zoiper.android.app");
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -501,7 +501,6 @@ public class ZoiperBasicFeatures extends DriverSetup {
 //        driver.pressKey(new KeyEvent(AndroidKey.BACK));
         zoiperSettingsElements.calls(driver).click();
         zoiperSettingsElements.autoAnswer(driver).click();
-//        driver.switchTo().alert().accept();
         zoiperSettingsElements.instantAnswer(driver).click();
         zoiperSettingsElements.keepSettingsAfterRestart(driver).click();
         zoiperElements.navigateBack(driver).click();
@@ -510,7 +509,11 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.exitButton(driver).click();
         zoiperElements.YesButton(driver).click();
         driver.activateApp("com.zoiper.android.zoiperbeta.app");
-        zoiperElements.OKButton(driver).click();
+        try {
+            zoiperElements.OKButton(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("OK");
+        }
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.defaultAccNumber);
         zoiperElements.dialButton(driver).click();
@@ -522,7 +525,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 30)
     void addAccNavDrawer() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.accountArrowNavigationDrawer(driver).click();
@@ -543,7 +546,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 31)
     void addAccFromSettings() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         settingsMenuElements.accountsSettings(driver).click();
@@ -567,7 +570,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 32)
     void switchAccounts() throws InterruptedException {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         Thread.sleep(1000);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.accountArrowNavigationDrawer(driver).click();
@@ -580,7 +583,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 33)
     void deleteAcc() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         settingsMenuElements.accountsSettings(driver).click();
@@ -593,7 +596,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 34)
     void deleteContact() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
         zoiperElements.elementDialedAndroidNumber(driver).click();
         zoiperElements.moreOptionsButton(driver).click();
@@ -603,7 +606,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 35)
     void deleteRecordings() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.callRecordingNavigationDrawer(driver).click();
@@ -618,10 +621,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 36)
     void deleteMessageThreadHistory() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.messagesMenuButton(driver).click();
         Actions builder = new Actions(driver);
-        builder.clickAndHold(driver.findElements(By.className(zoiperElements.messagesListClass)).get(0)).perform();
+        builder.clickAndHold(zoiperElements.messageThread(driver)).perform();
         zoiperElements.deleteThread(driver).click();
         zoiperElements.OKButton(driver).click();
         zoiperElements.noConversations(driver).isDisplayed();
@@ -629,7 +632,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 37)
     void unsubscribe() {
-        System.out.println("Test Executed: "+Thread.currentThread().getStackTrace()[1].getMethodName());
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.android.vending");
         phoneElements.playStoreNavDrawer(driver).click();
         phoneElements.subscriptionsPlayStore(driver).click();
