@@ -60,6 +60,12 @@ public class zoiperElements {
         return mobileElement;
     }
 
+    public static WebElement YESAtStartupButton(AndroidDriver<AndroidElement> driver) {
+
+        element = driver.findElement(By.id("android:id/button1"));
+        return element;
+    }
+
     public static MobileElement YESButton(AndroidDriver<AndroidElement> driver) {
 
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator

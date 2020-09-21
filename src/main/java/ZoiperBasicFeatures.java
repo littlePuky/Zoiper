@@ -49,9 +49,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
-            zoiperElements.YESButton(driver).click();
+            zoiperElements.YESAtStartupButton(driver).click();
         } catch (NoSuchElementException e) {
-            e.printStackTrace();
+            System.out.println("YES button is not present.");
         }
 
 //        zoiperElements.doNotDisturbButton(driver).click();
