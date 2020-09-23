@@ -18,9 +18,6 @@ public class newBuild extends DriverSetup {
     @Test(priority = 2)
     void networkChanges() {
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
+        
     }
 }
