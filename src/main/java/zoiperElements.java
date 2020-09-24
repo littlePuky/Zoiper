@@ -46,7 +46,7 @@ public class zoiperElements {
         return mobileElement;
     }
 
-    public static MobileElement userId(AndroidDriver<AndroidElement> driver) {
+    public static MobileElement userIdField(AndroidDriver<AndroidElement> driver) {
 
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\"Username @ PBX/VoIP provider\");"));
@@ -387,7 +387,7 @@ public class zoiperElements {
     public static MobileElement fullHistoryButton(AndroidDriver<AndroidElement> driver) {
 
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
-                ("new UiSelector().text(\"View full call history\");"));
+                ("new UiScrollable(new UiSelector()).scrollIntoView(" + "new UiSelector().text(\"View full call history\"));"));
         return mobileElement;
     }
 

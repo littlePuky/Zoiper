@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ZoiperBasicFeatures extends DriverSetup {
+public class ZoiperBasicFeatures extends activeDriver {
 
 
     @Test(priority = 1)
@@ -39,7 +39,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         } catch (NoSuchElementException e) {
             System.out.println("The User is Subscribed! Some tests may be irrelevant!");
         }
-        zoiperElements.userId(driver).sendKeys(zoiperElements.defaultAccNumber);
+        zoiperElements.userIdField(driver).sendKeys(zoiperElements.defaultAccNumber);
         zoiperElements.passField(driver).sendKeys(zoiperElements.accPass);
         zoiperElements.createAnAccButton(driver).click();
         zoiperElements.hostnameField(driver).sendKeys(zoiperElements.hostAddress);
@@ -68,10 +68,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
     void makeCall() {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        zoiperElements.favouritesButton(driver).click();
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
         zoiperElements.dialButton(driver).click();
-//        driver.switchTo().alert().accept();
         incallElements.threeDots(driver).click();
         incallElements.callStat(driver).click();
         String jitter = incallElements.interarrivalJitter(driver).getText();
@@ -122,8 +122,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.lockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
     }
 
     @Test(priority = 4)
@@ -135,8 +136,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.lockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
     }
 
     @Test(priority = 5)
@@ -146,8 +148,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.calls(driver).click();
         int locks = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals(locks, 3);
     }
 
@@ -171,10 +174,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         int audioLocks = driver.findElements(By.id(zoiperElements.codecLockId)).size();
         accountsSettings.opusSuper(driver).isDisplayed();
         int audioLocks2 = driver.findElements(By.id(zoiperElements.codecLockId)).size();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 4; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals((audioLocks + audioLocks2 - 2), 9);
     }
 
@@ -189,10 +191,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.codecLockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 4; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
     }
 
     @Test(priority = 8)
@@ -206,10 +207,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.lockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 4; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
     }
 
     @Test(priority = 9)
@@ -254,6 +254,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.verifySubscription(driver).click();
 //        zoiperElements.confirmSubscription(driver).click();
 //        Assert.assertEquals(subButtonMonthlyText, "CONTINUE");
+        driver.activateApp("com.zoiper.android.app");
         Assert.assertEquals(subButtonYearlyText, "7 DAY FREE TRIAL");
 //        driver.activateApp("com.android.vending");
 //        phoneElements.playStoreNavDrawer(driver).click();
@@ -268,39 +269,48 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 12)
     void recheckLocks() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
     }
 
     @Test(priority = 13)
     void retestPushLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        driver.activateApp("com.zoiper.android.app");
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.connectivity(driver).click();
         int push = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals(push, 0);
     }
 
     @Test(priority = 14)
     void retestCustomizeLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.customize(driver).click();
         int customize = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals(customize, 0);
     }
 
     @Test(priority = 15)
     void retestCallsLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.calls(driver).click();
         int locks = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals(locks, 0);
     }
 
@@ -308,6 +318,8 @@ public class ZoiperBasicFeatures extends DriverSetup {
     void retestAudioCodecsAndPresenceLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.accounts(driver).click();
         accountsSettings.defaultAccountSelect(driver).click();
         Actions builder = new Actions(driver);
@@ -322,7 +334,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         int audioLocks1 = driver.findElements(By.id(zoiperElements.codecLockId)).size();
         accountsSettings.opusSuper(driver).isDisplayed();
         int audioLocks2 = driver.findElements(By.id(zoiperElements.codecLockId)).size();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 4; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals(presenceLock, 0);
         Assert.assertEquals((audioLocks1 + audioLocks2), 0);
         //TODO verify presence is working
@@ -331,26 +345,33 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 17)
     void retestVideoCodecsLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//        zoiperSettingsElements.accounts(driver).click();
-//        accountsSettings.firstAccountSelect(driver).click();
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
+        zoiperSettingsElements.accounts(driver).click();
+        accountsSettings.defaultAccountSelect(driver).click();
         accountsSettings.videoCodecSettings(driver).click();
         int video = driver.findElements(By.id(zoiperElements.codecLockId)).size();
+        for (int backClicks = 4; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         Assert.assertEquals(video, 0);
-        zoiperElements.navigateBack(driver).click();
+
     }
 
     @Test(priority = 18)
     void retestEncryptionLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//        zoiperSettingsElements.accounts(driver).click();
-//        accountsSettings.firstAccountSelect(driver).click();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
+        zoiperSettingsElements.accounts(driver).click();
+        accountsSettings.defaultAccountSelect(driver).click();
         accountsSettings.encryption(driver).click();
         int encryption = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
         Assert.assertEquals(encryption, 0);
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 4; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
     }
 
     @Test(priority = 19)
@@ -360,31 +381,33 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
-//        driver.switchTo().alert().accept();
         incallElements.threeDots(driver).click();
         int callLocks = driver.findElements(By.id(zoiperElements.inCallLockId)).size();
+        driver.navigate().back();
+        zoiperElements.endCallButton(driver).click();
         Assert.assertEquals(callLocks, 0);
     }
 
     @Test(priority = 20)
     void unlockedVideoCall() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//        zoiperElements.dialPadButton(driver).click();
-//        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
-//        zoiperElements.dialButton(driver).click();
-//        driver.switchTo().alert().accept();
-//        incallElements.threeDots(driver).click();
-//        incallElements.videoCall(driver).click();
-//        driver.switchTo().alert().accept();
-//        incallElements.threeDots(driver).click();
+        zoiperElements.dialPadButton(driver).click();
+        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
+        zoiperElements.dialButton(driver).click();
+        incallElements.threeDots(driver).click();
         incallElements.videoCall(driver).click();
         incallElements.videoCallDisplay(driver).isDisplayed();
         incallElements.endVideoCall(driver).click();
+        zoiperElements.endCallButton(driver).click();
     }
 
     @Test(priority = 21)
     void unlockedAddAndMergeCalls() throws InterruptedException {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        zoiperElements.dialPadButton(driver).click();
+        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
+        zoiperElements.dialButton(driver).click();
         incallElements.threeDots(driver).click();
         incallElements.addCall(driver).click();
         zoiperElements.dialPadButton(driver).click();
@@ -397,14 +420,14 @@ public class ZoiperBasicFeatures extends DriverSetup {
         incallElements.manageConferenceCall(driver).click();
         zoiperElements.mergedAndroidNumber(driver).isDisplayed();
         zoiperElements.mergedDesktopNumber(driver).isDisplayed();
-        driver.pressKey(new KeyEvent(AndroidKey.BACK));
+        driver.navigate().back();
         zoiperElements.endCallButton(driver).click();
-//        zoiperElements.endCallButton(driver).click();
     }
 
     @Test(priority = 22)
     void unlockedCallRecord() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        zoiperElements.favouritesButton(driver).click();
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
@@ -429,7 +452,6 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
         zoiperElements.dialButton(driver).click();
         Thread.sleep(1000);
-//        incallElements.indicatorTransferCall(driver).isDisplayed();
         zoiperElements.favouritesButton(driver).isDisplayed();
     }
 
@@ -437,64 +459,57 @@ public class ZoiperBasicFeatures extends DriverSetup {
     void addContact() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.contactsButton(driver).click();
-//        zoiperElements.turnOnButton(driver).click();
-//        driver.switchTo().alert().accept();
         zoiperElements.addContactsButton(driver).click();
-//        zoiperElements.createContactButton(driver).click();
-//        zoiperElements.justOnceButton(driver).click();
         zoiperElements.editContactName(driver).sendKeys(zoiperElements.dialedAndroidNumber);
         zoiperElements.editContactNumber(driver).sendKeys(zoiperElements.dialedAndroidNumber);
         zoiperElements.doneEditingContactNumber(driver).click();
         driver.closeApp();
         driver.activateApp("com.zoiper.android.app");
+        zoiperElements.contactsButton(driver).click();
+        zoiperElements.addedContactNumber(driver).click();
         try {
-            zoiperElements.contactsButton(driver).click();
-            zoiperElements.addedContactNumber(driver).click();
             zoiperElements.endCallButton(driver).click();
         } catch (NoSuchElementException e) {
-            System.out.println("Number couldn't be dialed!");
+            System.out.println("Number couldn't be dialed! Check connection.");
         }
     }
 
+    int count;
+
     @Test(priority = 25)
     void sendMessage() {
+        count++;
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.messagesMenuButton(driver).click();
         zoiperElements.startMessageButton(driver).click();
         zoiperElements.messageRecipientField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-        zoiperElements.typeMessageField(driver).sendKeys(zoiperElements.autoMessage);
+        zoiperElements.typeMessageField(driver).sendKeys(zoiperElements.autoMessage +" "+ count);
         zoiperElements.sendArrowButton(driver).click();
         zoiperElements.backZoiperButton(driver).click();
     }
 
-    @Test(priority = 26)
+    @Test(priority = 26, dependsOnMethods = {"makeCall"})
     void accessHistory() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.historyButton(driver).click();
-        zoiperElements.presenceIcon(driver).isDisplayed();
+//        zoiperElements.presenceIcon(driver).isDisplayed();
         //TODO verify Presence is displaying the proper status
         zoiperElements.fullHistoryButton(driver).click();
         zoiperElements.lastMadeCall(driver).isDisplayed();
         zoiperElements.navigateBack(driver).click();
     }
 
-    @Test(priority = 27)
+    @Test(priority = 27, dependsOnMethods = {"makeCall"})
     void clickAndHoldToCopyNumberFromContact() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-//        zoiperElements.dialPadButton(driver).click();
-//        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-//        zoiperElements.dialButton(driver).click();
-//        driver.switchTo().alert().accept();
-//        zoiperElements.endCallButton(driver).click();
         zoiperElements.historyButton(driver).click();
         Actions builder = new Actions(driver);
         builder.clickAndHold(zoiperElements.addedContactNumber(driver)).perform();
         zoiperElements.copyNumberButton(driver).click();
         zoiperElements.favouritesButton(driver).click();
         zoiperElements.dialPadButton(driver).click();
-//        builder.clickAndHold(zoiperElements.numberFieldId(driver)).pause(2000).release().perform();
         zoiperElements.numberField(driver).click();
         driver.pressKey(new KeyEvent(AndroidKey.PASTE));
         zoiperElements.addedContactNumber(driver).isDisplayed();
@@ -502,14 +517,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.endCallButton(driver).click();
     }
 
-    @Test(priority = 28)
+    @Test(priority = 28, dependsOnMethods = {"makeCall"})
     void clickAndHoldEditNumberBeforeCall() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//        zoiperElements.dialPadButton(driver).click();
-//        zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-//        zoiperElements.dialButton(driver).click();
-//        driver.switchTo().alert().accept();
-//        zoiperElements.endCallButton(driver).click();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         zoiperElements.historyButton(driver).click();
         Actions builder = new Actions(driver);
         builder.clickAndHold(zoiperElements.addedContactNumber(driver)).perform();
@@ -522,6 +533,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 29)
     void pushCall() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 //        driver.activateApp("com.zoiper.android.app");
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -532,8 +544,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.autoAnswer(driver).click();
         zoiperSettingsElements.instantAnswer(driver).click();
         zoiperSettingsElements.keepSettingsAfterRestart(driver).click();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
         zoiperElements.navigationDrawer(driver).click();
         zoiperSettingsElements.exitButton(driver).click();
         zoiperElements.YesButton(driver).click();
@@ -541,7 +554,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         try {
             zoiperElements.OKButton(driver).click();
         } catch (NoSuchElementException e) {
-            e.printStackTrace();
+            System.out.println("OK is not displayed");
         }
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.defaultAccNumber);
@@ -559,7 +572,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.accountArrowNavigationDrawer(driver).click();
         zoiperElements.addAccountNavDrawerButton(driver).click();
-        zoiperElements.userId(driver).sendKeys(zoiperElements.secondAccNumber);
+        zoiperElements.userIdField(driver).sendKeys(zoiperElements.secondAccNumber);
         zoiperElements.passField(driver).sendKeys(zoiperElements.accPass);
         zoiperElements.createAnAccButton(driver).click();
         zoiperElements.hostnameField(driver).sendKeys(zoiperElements.hostAddress);
@@ -576,11 +589,12 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 31)
     void addAccFromSettings() throws InterruptedException {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         settingsMenuElements.accountsSettings(driver).click();
         zoiperElements.createAccButton(driver).click();
-        zoiperElements.userId(driver).sendKeys(zoiperElements.thirdAccNumber);
+        zoiperElements.userIdField(driver).sendKeys(zoiperElements.thirdAccNumber);
         zoiperElements.passField(driver).sendKeys(zoiperElements.accPass);
         zoiperElements.createAnAccButton(driver).click();
         zoiperElements.hostnameField(driver).sendKeys(zoiperElements.hostAddress);
@@ -590,14 +604,13 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         Thread.sleep(1000);
-//        zoiperElements.navigationDrawer(driver).click();
-//        zoiperElements.accountArrowNavigationDrawer(driver).click();
         zoiperElements.thirdAcc(driver).isDisplayed();
-        zoiperElements.navigateBack(driver).click();
-        zoiperElements.navigateBack(driver).click();
+        for (int backClicks = 2; backClicks >= 1; backClicks--) {
+            zoiperElements.navigateBack(driver).click();
+        }
     }
 
-    @Test(priority = 32)
+    @Test(priority = 32, dependsOnMethods = {"addAccNavDrawer"})
     void switchAccounts() throws InterruptedException {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         Thread.sleep(1000);
@@ -610,22 +623,25 @@ public class ZoiperBasicFeatures extends DriverSetup {
         driver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
-    @Test(priority = 33)
+    @Test(priority = 33, dependsOnMethods = {"addAccNavDrawer"})
     void deleteAcc() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
         settingsMenuElements.accountsSettings(driver).click();
+        int accountsCount1 = driver.findElements(By.id(zoiperElements.accListId)).size();
         Actions builder = new Actions(driver);
-        builder.clickAndHold(accountsSettings.defaultAccountSelect(driver)).perform();
+        builder.clickAndHold(zoiperElements.secondAcc(driver)).perform();
         zoiperElements.OKButton(driver).click();
-        int accountsCount = driver.findElements(By.id(zoiperElements.accListId)).size();
-        Assert.assertEquals(accountsCount, 2);
+        int accountsCount2 = driver.findElements(By.id(zoiperElements.accListId)).size();
+        Assert.assertEquals(accountsCount2, accountsCount1-1);
     }
 
-    @Test(priority = 34)
+    @Test(priority = 34, dependsOnMethods = {"addContact"})
     void deleteContact() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
         zoiperElements.addedContactNumber(driver).click();
         zoiperElements.moreOptionsButton(driver).click();
@@ -633,7 +649,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.DELETEButton(driver).click();
     }
 
-    @Test(priority = 35)
+    @Test(priority = 35, dependsOnMethods = {"unlockedCallRecord"})
     void deleteRecordings() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.zoiper.android.app");
@@ -648,7 +664,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.navigateBack(driver).click();
     }
 
-    @Test(priority = 36)
+    @Test(priority = 36, dependsOnMethods = {"sendMessage"})
     void deleteMessageThreadHistory() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.messagesMenuButton(driver).click();

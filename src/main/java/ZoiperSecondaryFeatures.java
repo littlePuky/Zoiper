@@ -21,7 +21,7 @@ public class ZoiperSecondaryFeatures extends activeDriver {
         } catch (NoSuchElementException e) {
             System.out.println("The User is Subscribed! Some tests may be irrelevant!");
         }
-        zoiperElements.userId(driver).sendKeys(zoiperElements.defaultAccNumber);
+        zoiperElements.userIdField(driver).sendKeys(zoiperElements.defaultAccNumber);
         zoiperElements.passField(driver).sendKeys(zoiperElements.accPass);
         zoiperElements.createAnAccButton(driver).click();
         zoiperElements.hostnameField(driver).sendKeys(zoiperElements.hostAddress);
