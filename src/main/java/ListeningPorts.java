@@ -8,7 +8,7 @@ import org.testng.annotations.*;
 public class ListeningPorts extends DriverSetup {
 
     @Test(priority = 1)
-    public void AccountRegister() throws InterruptedException {
+    public void AccountRegister() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.agreeButton(driver).click();
         try {
@@ -25,7 +25,8 @@ public class ListeningPorts extends DriverSetup {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-        zoiperElements.TCPSIP(driver).click();
+        zoiperElements.UDPSIP(driver).click();
+//        zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
             zoiperElements.YESAtStartupButton(driver).click();

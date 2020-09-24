@@ -6,7 +6,7 @@ public class CrashTests extends DriverSetup {
 
 
     @Test(priority = 1)
-    public void enterDiagnostics() throws InterruptedException {
+    public void enterDiagnostics() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.agreeButton(driver).click();
         try {
@@ -23,7 +23,8 @@ public class CrashTests extends DriverSetup {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-        zoiperElements.TCPSIP(driver).click();
+        zoiperElements.UDPSIP(driver).click();
+//        zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
             zoiperElements.YESAtStartupButton(driver).click();

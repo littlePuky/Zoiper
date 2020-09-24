@@ -11,7 +11,7 @@ public class ZoiperSecondaryFeatures extends activeDriver {
 
 
     @Test(priority = 1)
-    public void AccountRegister() throws InterruptedException {
+    public void AccountRegister() {
 
         zoiperElements.agreeButton(driver).click();
         try {
@@ -28,7 +28,8 @@ public class ZoiperSecondaryFeatures extends activeDriver {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-        zoiperElements.TCPSIP(driver).click();
+        zoiperElements.UDPSIP(driver).click();
+//        zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
             zoiperElements.YESAtStartupButton(driver).click();
@@ -297,12 +298,9 @@ public class ZoiperSecondaryFeatures extends activeDriver {
     }
 
     @Test(priority = 12)
-    void unsubscribe() throws InterruptedException {
+    void unsubscribe() {
 
         driver.activateApp("com.android.vending");
-//        driver.pressKey(new KeyEvent(AndroidKey.BACK));
-//        Thread.sleep(1000);
-//        driver.pressKey(new KeyEvent(AndroidKey.BACK));
         phoneElements.playStoreNavDrawer(driver).click();
         phoneElements.subscriptionsPlayStore(driver).click();
         phoneElements.zoiperSubscriptionPlayStore(driver).click();

@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ZoiperBasicFeatures extends activeDriver {
+public class ZoiperBasicFeatures extends DriverSetup {
 
 
     @Test(priority = 1)
@@ -46,7 +46,8 @@ public class ZoiperBasicFeatures extends activeDriver {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-        zoiperElements.TCPSIP(driver).click();
+        zoiperElements.UDPSIP(driver).click();
+//        zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
             zoiperElements.YESAtStartupButton(driver).click();
@@ -284,10 +285,10 @@ public class ZoiperBasicFeatures extends activeDriver {
     }
 
     @Test(priority = 14)
-    void retestCustomizeLock() throws InterruptedException {
+    void retestCustomizeLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        zoiperElements.navigateBack(driver).click();
-        Thread.sleep(1000);
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.customize(driver).click();
         int customize = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
         zoiperElements.navigateBack(driver).click();
@@ -661,13 +662,17 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 37)
     void unsubscribe() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        driver.activateApp("com.android.vending");
-        phoneElements.playStoreNavDrawer(driver).click();
-        phoneElements.subscriptionsPlayStore(driver).click();
-        phoneElements.zoiperSubscriptionPlayStore(driver).click();
-        phoneElements.cancelSubscriptionButton(driver).click();
-        phoneElements.declineToAnswer(driver).click();
-        phoneElements.continueButtonDeclineToAnswer(driver).click();
-        phoneElements.confirmCancelSubButton(driver).click();
+        try {
+            driver.activateApp("com.android.vending");
+            phoneElements.playStoreNavDrawer(driver).click();
+            phoneElements.subscriptionsPlayStore(driver).click();
+            phoneElements.zoiperSubscriptionPlayStore(driver).click();
+            phoneElements.cancelSubscriptionButton(driver).click();
+            phoneElements.declineToAnswer(driver).click();
+            phoneElements.continueButtonDeclineToAnswer(driver).click();
+            phoneElements.confirmCancelSubButton(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("Subscription is auto-canceled by Google Play!");
+        }
     }
 }
