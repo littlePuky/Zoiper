@@ -9,7 +9,7 @@ public class zoiperElements {
     private static WebElement element;
     private static MobileElement mobileElement;
     public static String apkPath = "C:/Users/Alex/Desktop/zoiper_2.16.4_434_release.apk";
-    public static String hostAddress = "sip4.zoiper.com";//"10.2.1.99:6060";
+    public static String hostAddress = "sip4.zoiper.com";//"10.2.1.99:6060"
     public static String appiumAddress = "http://localhost:4723/wd/hub";
     public static String defaultAccNumber = "3030";
     public static String secondAccNumber = "2000";
@@ -498,7 +498,7 @@ public class zoiperElements {
         return mobileElement;
     }
 
-    public static WebElement elementDialedAndroidNumber(AndroidDriver<AndroidElement> driver) {
+    public static WebElement addedContactNumber(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\""+dialedAndroidNumber+"\");"));
         return mobileElement;

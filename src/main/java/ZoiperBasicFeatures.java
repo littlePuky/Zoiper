@@ -140,7 +140,6 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.calls(driver).click();
         int locks = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
         zoiperElements.navigateBack(driver).click();
-        ;
         Assert.assertEquals(locks, 3);
     }
 
@@ -426,10 +425,13 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperElements.doneEditingContactNumber(driver).click();
         driver.closeApp();
         driver.activateApp("com.zoiper.android.app");
-        zoiperElements.contactsButton(driver).click();
-        zoiperElements.elementDialedAndroidNumber(driver).click();
-//        driver.switchTo().alert().accept();
-        zoiperElements.endCallButton(driver).click();
+        try {
+            zoiperElements.contactsButton(driver).click();
+            zoiperElements.addedContactNumber(driver).click();
+            zoiperElements.endCallButton(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("Number couldn't be dialed!");
+        }
     }
 
     @Test(priority = 25)
@@ -466,14 +468,14 @@ public class ZoiperBasicFeatures extends DriverSetup {
 //        zoiperElements.endCallButton(driver).click();
         zoiperElements.historyButton(driver).click();
         Actions builder = new Actions(driver);
-        builder.clickAndHold(zoiperElements.elementDialedAndroidNumber(driver)).perform();
+        builder.clickAndHold(zoiperElements.addedContactNumber(driver)).perform();
         zoiperElements.copyNumberButton(driver).click();
         zoiperElements.favouritesButton(driver).click();
         zoiperElements.dialPadButton(driver).click();
 //        builder.clickAndHold(zoiperElements.numberFieldId(driver)).pause(2000).release().perform();
         zoiperElements.numberField(driver).click();
         driver.pressKey(new KeyEvent(AndroidKey.PASTE));
-        zoiperElements.elementDialedAndroidNumber(driver).isDisplayed();
+        zoiperElements.addedContactNumber(driver).isDisplayed();
         zoiperElements.dialButton(driver).click();
         zoiperElements.endCallButton(driver).click();
     }
@@ -488,9 +490,9 @@ public class ZoiperBasicFeatures extends DriverSetup {
 //        zoiperElements.endCallButton(driver).click();
         zoiperElements.historyButton(driver).click();
         Actions builder = new Actions(driver);
-        builder.clickAndHold(zoiperElements.elementDialedAndroidNumber(driver)).perform();
+        builder.clickAndHold(zoiperElements.addedContactNumber(driver)).perform();
         zoiperElements.editNumberBeforeCallButton(driver).click();
-        zoiperElements.elementDialedAndroidNumber(driver).isDisplayed();
+        zoiperElements.addedContactNumber(driver).isDisplayed();
         zoiperElements.dialButton(driver).click();
         zoiperElements.endCallButton(driver).click();
     }
@@ -603,7 +605,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
     void deleteContact() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
-        zoiperElements.elementDialedAndroidNumber(driver).click();
+        zoiperElements.addedContactNumber(driver).click();
         zoiperElements.moreOptionsButton(driver).click();
         zoiperElements.deleteContact(driver).click();
         zoiperElements.DELETEButton(driver).click();
