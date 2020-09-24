@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ZoiperBasicFeatures extends DriverSetup {
+public class ZoiperBasicFeatures extends activeDriver {
 
 
     @Test(priority = 1)
@@ -122,23 +122,30 @@ public class ZoiperBasicFeatures extends DriverSetup {
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
         zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
     }
 
     @Test(priority = 4)
     void customizeLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.customize(driver).click();
         zoiperSettingsElements.lockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
+        zoiperElements.navigateBack(driver).click();
         zoiperElements.navigateBack(driver).click();
     }
 
     @Test(priority = 5)
     void callsLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.calls(driver).click();
         int locks = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
+        zoiperElements.navigateBack(driver).click();
         zoiperElements.navigateBack(driver).click();
         Assert.assertEquals(locks, 3);
     }
@@ -146,6 +153,8 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 6)
     void audioCodecsAndPresenceLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.accounts(driver).click();
         accountsSettings.defaultAccountSelect(driver).click();
         Actions builder = new Actions(driver);
@@ -162,26 +171,36 @@ public class ZoiperBasicFeatures extends DriverSetup {
         accountsSettings.opusSuper(driver).isDisplayed();
         int audioLocks2 = driver.findElements(By.id(zoiperElements.codecLockId)).size();
         zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
         Assert.assertEquals((audioLocks + audioLocks2 - 2), 9);
     }
 
     @Test(priority = 7)
     void videoCodecsLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//        zoiperSettingsElements.accounts(driver).click();
-//        accountsSettings.firstAccountSelect(driver).click();
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
+        zoiperSettingsElements.accounts(driver).click();
+        accountsSettings.defaultAccountSelect(driver).click();
         accountsSettings.videoCodecSettings(driver).click();
         zoiperSettingsElements.codecLockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
         settingsMenuElements.cancelButton(driver).click();
+        zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
         zoiperElements.navigateBack(driver).click();
     }
 
     @Test(priority = 8)
     void encryptionLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-//        zoiperSettingsElements.accounts(driver).click();
-//        accountsSettings.firstAccountSelect(driver).click();
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
+        zoiperSettingsElements.accounts(driver).click();
+        accountsSettings.defaultAccountSelect(driver).click();
         accountsSettings.encryption(driver).click();
         zoiperSettingsElements.lockIcon(driver).click();
         zoiperSettingsElements.upgradePopup(driver).isDisplayed();
@@ -249,16 +268,18 @@ public class ZoiperBasicFeatures extends DriverSetup {
     void recheckLocks() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        driver.activateApp("com.zoiper.android.app");
-        zoiperElements.navigationDrawer(driver).click();
-        zoiperElements.settingsNavigationDrawer(driver).click();
     }
 
     @Test(priority = 13)
     void retestPushLock() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.activateApp("com.zoiper.android.app");
+        zoiperElements.navigationDrawer(driver).click();
+        zoiperElements.settingsNavigationDrawer(driver).click();
         zoiperSettingsElements.connectivity(driver).click();
         int push = driver.findElements(By.id(zoiperElements.premiumLockId)).size();
+        zoiperElements.navigateBack(driver).click();
+        zoiperElements.navigateBack(driver).click();
         Assert.assertEquals(push, 0);
     }
 
