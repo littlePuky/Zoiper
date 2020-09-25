@@ -1,22 +1,23 @@
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
 
-public class ZoiperBasicFeatures extends DriverSetup {
-
+public class ZoiperBasicFeatures extends activeDriver {
 
 
     @Test(priority = 1)
     void AccountRegister() throws InterruptedException {
 
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.agreeButton(driver).click();
         try {
@@ -38,18 +39,26 @@ public class ZoiperBasicFeatures extends DriverSetup {
             Assert.assertEquals(subButtonMonthlyText, "CONTINUE");
             Assert.assertEquals(subButtonYearlyText, "7 DAY FREE TRIAL");
         } catch (NoSuchElementException e) {
-            System.out.println("The User is Subscribed! Some tests may be irrelevant!");
+            System.out.println("The User is Subscribed! Some tests will be ignored!");
+            zoiperElements.isSubscribed = true;
         }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.userIdField(driver).sendKeys(zoiperElements.defaultAccNumber);
         zoiperElements.passField(driver).sendKeys(zoiperElements.accPass);
         zoiperElements.createAnAccButton(driver).click();
         zoiperElements.hostnameField(driver).sendKeys(zoiperElements.hostAddress);
-        driver.hideKeyboard();
+        try {
+            driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+            driver.hideKeyboard();
+        } catch (Exception e) {
+            System.out.println("No keyboard is present.");
+        }
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-//        zoiperElements.UDPSIP(driver).click();
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         try {
             zoiperElements.YESAtStartupButton(driver).click();
         } catch (NoSuchElementException e) {
@@ -104,6 +113,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 2)
     void lockedAccessAccountSettingsTroughNavDrawer() throws InterruptedException {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.accountArrowNavigationDrawer(driver).click();
@@ -116,6 +129,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 3)
     void pushLock() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -130,6 +147,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 4)
     void customizeLock() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -144,6 +165,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 5)
     void callsSettingsLocksCount() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -157,6 +182,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 6)
     void audioCodecsAndPresenceLocksCount() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -183,6 +212,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 7)
     void videoCodecsLocksCount() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -199,6 +232,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 8)
     void encryptionLock() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -215,6 +252,10 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 9)
     void callRecordingsLock() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.callRecordingNavigationDrawer(driver).click();
@@ -226,11 +267,14 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 10)
     void inCallLocksCount() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
-//        driver.switchTo().alert().accept();
         incallElements.threeDots(driver).click();
         int callLocks = driver.findElements(By.id(zoiperElements.inCallLockId)).size();
         incallElements.addCall(driver).click();
@@ -242,35 +286,42 @@ public class ZoiperBasicFeatures extends DriverSetup {
 
     @Test(priority = 11)
     void subscribe() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.premiumFeaturesNavigationDrawer(driver).click();
         zoiperElements.freeTrial(driver).click();
         String subButtonYearlyText = zoiperElements.subscribeButton(driver).getText();
-//        zoiperElements.subMonthly(driver).click();
-//        String subButtonMonthlyText = zoiperElements.subscribeButton(driver).getText();
+        zoiperElements.subMonthly(driver).click();
+        String subButtonMonthlyText = zoiperElements.subscribeButton(driver).getText();
         zoiperElements.subscribeButton(driver).click();
-        zoiperElements.confirmSubscription(driver).click();
-        zoiperElements.passSubscription(driver).sendKeys(zoiperElements.subscriptionPass);
-        zoiperElements.verifySubscription(driver).click();
-//        zoiperElements.confirmSubscription(driver).click();
-//        Assert.assertEquals(subButtonMonthlyText, "CONTINUE");
-        driver.activateApp("com.zoiper.android.app");
+        try {
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            zoiperElements.confirmSubscription(driver).click();
+            zoiperElements.passSubscription(driver).sendKeys(zoiperElements.subscriptionPass);
+            zoiperElements.verifySubscription(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("No pass required!");
+        }
+        try {
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            phoneElements.paymentAuthenticationRequestNo(driver).click();
+            zoiperElements.OKButton(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("No authentication required.");
+        }
+        zoiperElements.navigateBack(driver).click();
+        Assert.assertEquals(subButtonMonthlyText, "CONTINUE");
         Assert.assertEquals(subButtonYearlyText, "7 DAY FREE TRIAL");
-//        driver.activateApp("com.android.vending");
-//        phoneElements.playStoreNavDrawer(driver).click();
-//        phoneElements.subscriptionsPlayStore(driver).click();
-//        phoneElements.zoiperSubscriptionPlayStore(driver).click();
-//        phoneElements.cancelSubscriptionButton(driver).click();
-//        phoneElements.declineToAnswer(driver).click();
-//        phoneElements.continueButtonDeclineToAnswer(driver).click();
-//        phoneElements.confirmCancelSubButton(driver).click();
     }
 
     @Test(priority = 12)
-    void recheckLocks() {
+    void locksAfterSubscription() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-
     }
 
     @Test(priority = 13)
@@ -378,7 +429,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 19)
     void inCallLocksReCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);//bad connection
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);//bad connection
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
@@ -405,7 +456,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 21)
     void unlockedAddAndMergeCalls() throws InterruptedException {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         zoiperElements.dialPadButton(driver).click();
         zoiperElements.numberField(driver).sendKeys(zoiperElements.dialedDesktopNumber);
         zoiperElements.dialButton(driver).click();
@@ -420,7 +471,12 @@ public class ZoiperBasicFeatures extends DriverSetup {
         incallElements.mergeCalls(driver).click();
         incallElements.manageConferenceCall(driver).click();
         zoiperElements.mergedAndroidNumber(driver).isDisplayed();
-        zoiperElements.mergedDesktopNumber(driver).isDisplayed();
+        try {
+            zoiperElements.mergedDesktopNumber(driver).isDisplayed();
+        } catch (NoSuchElementException e) {
+            driver.findElement(MobileBy.AndroidUIAutomator
+                    ("new UiSelector().text(\""+ zoiperElements.dialedDesktopNumber+"\");")).isDisplayed();
+        }
         driver.navigate().back();
         zoiperElements.endCallButton(driver).click();
     }
@@ -459,32 +515,43 @@ public class ZoiperBasicFeatures extends DriverSetup {
     @Test(priority = 24)
     void addContact() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         zoiperElements.contactsButton(driver).click();
         zoiperElements.addContactsButton(driver).click();
-        zoiperElements.editContactName(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-        zoiperElements.editContactNumber(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-        zoiperElements.doneEditingContactNumber(driver).click();
-        driver.closeApp();
+        try {
+            phoneElements.saveContactToPhoneRadioButton(driver).click();
+            phoneElements.justOnceButton(driver).click();
+            phoneElements.addNewContactNumber(driver).click();
+            driver.getKeyboard().sendKeys(zoiperElements.dialedAndroidNumber);
+            phoneElements.saveNewNumber(driver).click();
+            System.out.println("Android 10 Contacts");
+        } catch (NoSuchElementException e) {
+            zoiperElements.editContactName(driver).sendKeys(zoiperElements.dialedAndroidNumber);
+            zoiperElements.editContactNumber(driver).sendKeys(zoiperElements.dialedAndroidNumber);
+            zoiperElements.doneEditingContactNumber(driver).click();
+            System.out.println("Android 7 Contacts");
+        }
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.contactsButton(driver).click();
-        zoiperElements.addedContactNumber(driver).click();
+        zoiperElements.searchFieldClick(driver).click();
+        zoiperElements.searchFieldInsert(driver).sendKeys(zoiperElements.dialedAndroidNumber);
+        phoneElements.createdContactSearch(driver).click();
         try {
             zoiperElements.endCallButton(driver).click();
         } catch (NoSuchElementException e) {
             System.out.println("Number couldn't be dialed! Check connection.");
         }
+        zoiperElements.backFromSearch(driver).click();
     }
 
-
-
-    @Test(priority = 25,invocationCount = 2)
+    @Test(priority = 25)
     void sendMessage() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.messagesMenuButton(driver).click();
         zoiperElements.startMessageButton(driver).click();
         zoiperElements.messageRecipientField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-        zoiperElements.typeMessageField(driver).sendKeys(zoiperElements.autoMessage +" "+ ++zoiperElements.messageCounter);
+        zoiperElements.typeMessageField(driver).sendKeys(zoiperElements.autoMessage + " " + ++zoiperElements.messageCounter);
         zoiperElements.sendArrowButton(driver).click();
         zoiperElements.backZoiperButton(driver).click();
     }
@@ -494,7 +561,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.historyButton(driver).click();
 //        zoiperElements.presenceIcon(driver).isDisplayed();
-        //TODO verify Presence is displaying the proper status
+        //TODO verify Presence is displaying the proper status (ADD own number to contacts to see status text)
         zoiperElements.fullHistoryButton(driver).click();
         zoiperElements.lastMadeCall(driver).isDisplayed();
         zoiperElements.navigateBack(driver).click();
@@ -534,12 +601,8 @@ public class ZoiperBasicFeatures extends DriverSetup {
     void pushCall() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-//        driver.activateApp("com.zoiper.android.app");
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
-//        zoiperSettingsElements.connectivity(driver).click();
-//        zoiperElements.activatePush(driver).click();
-//        driver.pressKey(new KeyEvent(AndroidKey.BACK));
         zoiperSettingsElements.calls(driver).click();
         zoiperSettingsElements.autoAnswer(driver).click();
         zoiperSettingsElements.instantAnswer(driver).click();
@@ -635,7 +698,7 @@ public class ZoiperBasicFeatures extends DriverSetup {
         builder.clickAndHold(zoiperElements.secondAcc(driver)).perform();
         zoiperElements.OKButton(driver).click();
         int accountsCount2 = driver.findElements(By.id(zoiperElements.accListId)).size();
-        Assert.assertEquals(accountsCount2, accountsCount1-1);
+        Assert.assertEquals(accountsCount2, accountsCount1 - 1);
     }
 
     @Test(priority = 34, dependsOnMethods = {"addContact"})
@@ -643,10 +706,21 @@ public class ZoiperBasicFeatures extends DriverSetup {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
-        zoiperElements.addedContactNumber(driver).click();
-        zoiperElements.moreOptionsButton(driver).click();
-        zoiperElements.deleteContact(driver).click();
-        zoiperElements.DELETEButton(driver).click();
+        try {
+            phoneElements.android7SearchPhoneContact(driver).sendKeys(zoiperElements.dialedAndroidNumber);
+            zoiperElements.addedContactNumber(driver).click();
+            zoiperElements.moreOptionsButton(driver).click();
+            zoiperElements.deleteContact(driver).click();
+            zoiperElements.DELETEButton(driver).click();
+        } catch (NoSuchElementException e) {
+            phoneElements.android10SearchPhoneContact(driver).click();
+            driver.getKeyboard().sendKeys(zoiperElements.dialedAndroidNumber);
+            phoneElements.createdContactSearch(driver).click();
+            phoneElements.moreOptions(driver).click();
+            zoiperElements.deleteButton(driver).click();
+            phoneElements.moveToTrashButton(driver).click();
+        }
+        driver.activateApp("com.zoiper.android.app");
     }
 
     @Test(priority = 35, dependsOnMethods = {"unlockedCallRecord"})

@@ -117,7 +117,7 @@ public class phoneElements {
         return mobileElement;
     }
 
-    public static WebElement searchContact(AndroidDriver<AndroidElement> driver) {
+    public static WebElement android7SearchPhoneContact(AndroidDriver<AndroidElement> driver) {
         element = driver.findElement(By.id("com.android.contacts:id/search_view"));
 
         return element;
@@ -144,4 +144,65 @@ public class phoneElements {
         return mobileElement;
     }
 
+    public static MobileElement paymentAuthenticationRequestNo(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().text(\"No, thanks\");"));
+        return mobileElement;
+    }
+
+    public static MobileElement saveContactToPhoneRadioButton(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().text(\"Phone\");"));
+        return mobileElement;
+    }
+
+    public static WebElement justOnceButton(AndroidDriver<AndroidElement> driver) {
+        element = driver.findElements(By.className("android.widget.Button")).get(0);
+
+        return element;
+    }
+
+    public static MobileElement addNewContactNumber(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().text(\"Phone\");"));
+        return mobileElement;
+    }
+
+    public static MobileElement saveNewNumber(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().text(\"Save\");"));
+        return mobileElement;
+    }
+
+    public static MobileElement android10SearchPhoneContact(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().description(\"Search\");"));
+        return mobileElement;
+    }
+
+    public static MobileElement createdContactSearch(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().description(\"" + zoiperElements.dialedAndroidNumber + "\");"));
+        return mobileElement;
+    }
+
+    public static MobileElement moreOptions(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().description(\"More options\");"));
+        return mobileElement;
+    }
+
+    public static MobileElement moveToTrashButton(AndroidDriver<AndroidElement> driver) {
+
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().text(\"Move\");"));
+        return mobileElement;
+    }
 }

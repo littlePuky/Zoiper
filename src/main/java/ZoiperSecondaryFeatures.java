@@ -28,7 +28,6 @@ public class ZoiperSecondaryFeatures extends activeDriver {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-//        zoiperElements.UDPSIP(driver).click();
         zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
@@ -259,7 +258,7 @@ public class ZoiperSecondaryFeatures extends activeDriver {
 //        Thread.sleep(1000);
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
         Thread.sleep(1000);
-        phoneElements.searchContact(driver).sendKeys("z");
+        phoneElements.android7SearchPhoneContact(driver).sendKeys("z");
         phoneElements.z1Contact(driver).click();
         zoiperElements.favouriteStarButton(driver).click();
 
@@ -275,7 +274,7 @@ public class ZoiperSecondaryFeatures extends activeDriver {
     void unFavourite() throws InterruptedException {
 
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
-        phoneElements.searchContact(driver).sendKeys("z");
+        phoneElements.android7SearchPhoneContact(driver).sendKeys("z");
         phoneElements.z1Contact(driver).click();
         zoiperElements.unfavouriteButton(driver).click();
         Thread.sleep(1000);
@@ -313,7 +312,7 @@ public class ZoiperSecondaryFeatures extends activeDriver {
     @Test(priority = 13)
     void deleteContact() {
         driver.pressKey(new KeyEvent(AndroidKey.CONTACTS));
-        phoneElements.searchContact(driver).sendKeys("z");
+        phoneElements.android7SearchPhoneContact(driver).sendKeys("z");
         phoneElements.z1Contact(driver).click();
         zoiperElements.moreOptionsButton(driver).click();
         zoiperElements.deleteContact(driver).click();

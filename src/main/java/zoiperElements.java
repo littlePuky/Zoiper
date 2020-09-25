@@ -32,6 +32,7 @@ public class zoiperElements {
     public static String flipperId = "com.zoiper.android.app:id/viewFlipper";
     public static String googlePlayAcc = "qa7.zoiper@gmail.com";
     public static int messageCounter;
+    public static boolean isSubscribed = false;
 
     public static WebElement zoiperVersion(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
@@ -472,12 +473,6 @@ public class zoiperElements {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
                 ("new UiSelector().text(\"Select all\");"));
         return mobileElement;
-    }
-
-    public static WebElement justOnceButton(AndroidDriver<AndroidElement> driver) {
-        element = driver.findElement(By.id("com.huawei.android.internal.app:id/hw_button_once"));
-
-        return element;
     }
 
     public static WebElement editContactName(AndroidDriver<AndroidElement> driver) {
