@@ -4,7 +4,10 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.*;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class ZoiperSecondaryFeatures extends activeDriver {
@@ -130,26 +133,38 @@ public class ZoiperSecondaryFeatures extends activeDriver {
     }
 
     @Test(priority = 4)
-    void subscribeMonthly() {
-
+    void subscribe() {
+        if (zoiperElements.isSubscribed) {
+            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
+            throw new SkipException("Ignoring Test ");
+        }
+        System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.premiumFeaturesNavigationDrawer(driver).click();
         zoiperElements.freeTrial(driver).click();
+        String subButtonYearlyText = zoiperElements.subscribeButton(driver).getText();
         zoiperElements.subMonthly(driver).click();
+        String subButtonMonthlyText = zoiperElements.subscribeButton(driver).getText();
         zoiperElements.subscribeButton(driver).click();
-        zoiperElements.confirmSubscription(driver).click();
-        zoiperElements.passSubscription(driver).sendKeys(zoiperElements.subscriptionPass);
-        zoiperElements.verifySubscription(driver).click();
-//        driver.activateApp("com.android.vending");
-//        phoneElements.playStoreNavDrawer(driver).click();
-//        phoneElements.subscriptionsPlayStore(driver).click();
-//        phoneElements.zoiperSubscriptionPlayStore(driver).click();
-//        phoneElements.openAppPlayStore(driver).click();
-//        phoneElements.cancelSubscriptionButton(driver).click();
-//        phoneElements.declineToAnswer(driver).click();
-//        phoneElements.continueButtonDeclineToAnswer(driver).click();
-//        phoneElements.confirmCancelSubButton(driver).click();
-
+        try {
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            zoiperElements.confirmSubscription(driver).click();
+            zoiperElements.passSubscription(driver).sendKeys(zoiperElements.subscriptionPass);
+            zoiperElements.verifySubscription(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("No pass required!");
+        }
+        try {
+            driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+            phoneElements.paymentAuthenticationRequestNo(driver).click();
+            zoiperElements.OKButton(driver).click();
+        } catch (NoSuchElementException e) {
+            System.out.println("No authentication required.");
+        }
+        zoiperElements.navigateBack(driver).click();
+        Assert.assertEquals(subButtonMonthlyText, "CONTINUE");
+        Assert.assertEquals(subButtonYearlyText, "7 DAY FREE TRIAL");
     }
 
     @Test(priority = 5)
