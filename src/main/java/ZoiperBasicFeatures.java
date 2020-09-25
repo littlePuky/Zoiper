@@ -9,7 +9,8 @@ import org.testng.annotations.*;
 import java.util.concurrent.TimeUnit;
 
 
-public class ZoiperBasicFeatures extends activeDriver {
+public class ZoiperBasicFeatures extends DriverSetup {
+
 
 
     @Test(priority = 1)
@@ -46,8 +47,8 @@ public class ZoiperBasicFeatures extends activeDriver {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-        zoiperElements.UDPSIP(driver).click();
-//        zoiperElements.TCPSIP(driver).click();
+//        zoiperElements.UDPSIP(driver).click();
+        zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
             zoiperElements.YESAtStartupButton(driver).click();
@@ -102,7 +103,7 @@ public class ZoiperBasicFeatures extends activeDriver {
     }
 
     @Test(priority = 2)
-    void accessAccountSettingsTroughNavDrawer() throws InterruptedException {
+    void lockedAccessAccountSettingsTroughNavDrawer() throws InterruptedException {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.accountArrowNavigationDrawer(driver).click();
@@ -142,7 +143,7 @@ public class ZoiperBasicFeatures extends activeDriver {
     }
 
     @Test(priority = 5)
-    void callsLocksCount() {
+    void callsSettingsLocksCount() {
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
         zoiperElements.settingsNavigationDrawer(driver).click();
@@ -474,17 +475,16 @@ public class ZoiperBasicFeatures extends activeDriver {
         }
     }
 
-    int count;
 
-    @Test(priority = 25)
+
+    @Test(priority = 25,invocationCount = 2)
     void sendMessage() {
-        count++;
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.activateApp("com.zoiper.android.app");
         zoiperElements.messagesMenuButton(driver).click();
         zoiperElements.startMessageButton(driver).click();
         zoiperElements.messageRecipientField(driver).sendKeys(zoiperElements.dialedAndroidNumber);
-        zoiperElements.typeMessageField(driver).sendKeys(zoiperElements.autoMessage +" "+ count);
+        zoiperElements.typeMessageField(driver).sendKeys(zoiperElements.autoMessage +" "+ ++zoiperElements.messageCounter);
         zoiperElements.sendArrowButton(driver).click();
         zoiperElements.backZoiperButton(driver).click();
     }

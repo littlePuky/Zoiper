@@ -23,8 +23,8 @@ public class CrashTests extends DriverSetup {
         driver.hideKeyboard();
         zoiperElements.nextButton(driver).click();
         zoiperElements.skipButton(driver).click();
-        zoiperElements.UDPSIP(driver).click();
-//        zoiperElements.TCPSIP(driver).click();
+//        zoiperElements.UDPSIP(driver).click();
+        zoiperElements.TCPSIP(driver).click();
         zoiperElements.finishButton(driver).click();
         try {
             zoiperElements.YESAtStartupButton(driver).click();

@@ -30,8 +30,8 @@ public class zoiperElements {
     public static String textViewClass = "android.widget.TextView";
     public static String accListId = "com.zoiper.android.app:id/account_list_row_id";
     public static String flipperId = "com.zoiper.android.app:id/viewFlipper";
-    public static String googlePlayAcc = "qa4.zoiper@gmail.com";
-
+    public static String googlePlayAcc = "qa7.zoiper@gmail.com";
+    public static int messageCounter;
 
     public static WebElement zoiperVersion(AndroidDriver<AndroidElement> driver) {
         mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
