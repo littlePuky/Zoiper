@@ -30,5 +30,6 @@ public class DriverSetup {
         dc.setCapability("autoGrantPermissions", true);
         URL url = new URL(zoiperElements.appiumAddress);
         driver = new AndroidDriver<>(url, dc);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 }

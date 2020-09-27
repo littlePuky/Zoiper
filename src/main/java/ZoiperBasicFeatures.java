@@ -114,8 +114,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 2)
     void lockedAccessAccountSettingsTroughNavDrawer() throws InterruptedException {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -130,8 +130,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 3)
     void pushLock() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -148,8 +148,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 4)
     void customizeLock() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -166,8 +166,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 5)
     void callsSettingsLocksCount() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -183,8 +183,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 6)
     void audioCodecsAndPresenceLocksCount() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -213,8 +213,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 7)
     void videoCodecsLocksCount() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -233,8 +233,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 8)
     void encryptionLock() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -253,8 +253,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 9)
     void callRecordingsLock() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.navigationDrawer(driver).click();
@@ -268,8 +268,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 10)
     void inCallLocksCount() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         zoiperElements.dialPadButton(driver).click();
@@ -287,8 +287,8 @@ public class ZoiperBasicFeatures extends activeDriver {
     @Test(priority = 11)
     void subscribe() {
         if (zoiperElements.isSubscribed) {
-            System.out.println("Ignoring Test " + Thread.currentThread().getStackTrace()[1].getMethodName() + " - user is subscribed.");
-            throw new SkipException("Ignoring Test ");
+            System.out.println("Ignoring test \"" + Thread.currentThread().getStackTrace()[1].getMethodName() + "\" - user is subscribed.");
+            throw new SkipException("Ignoring test ");
         }
         System.out.println("Test Executed: " + Thread.currentThread().getStackTrace()[1].getMethodName());
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

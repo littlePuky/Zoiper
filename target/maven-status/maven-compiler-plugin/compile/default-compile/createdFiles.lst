@@ -1,12 +1,13 @@
 zoiperSettingsElements.class
 zoiperElements.class
-settingsMenuElements.class
-accountsSettings.class
 ListeningPorts.class
 newBuild.class
+CrashTests.class
+settingsMenuElements.class
+accountsSettings.class
 activeDriver.class
 ZoiperBasicFeatures.class
-CrashTests.class
 DriverSetup.class
-incallElements.class
+ZoiperSecondaryFeatures.class
 phoneElements.class
+incallElements.class
