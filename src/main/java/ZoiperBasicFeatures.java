@@ -209,15 +209,16 @@ public class ZoiperBasicFeatures extends activeDriver {
         }
         //What really matters is the size of the screen not the android version
         int totalAudioCodecLocks;
-        if (zoiperElements.androidVersion.equals("7.0")){
+
+        if (zoiperElements.androidVersion.equals("7.0")) {
+
             totalAudioCodecLocks = audioLocks + audioLocks2 - 2;
             Assert.assertEquals(totalAudioCodecLocks, 9);
-        }
-        else if (zoiperElements.androidVersion.equals("10")){
+        } else if (zoiperElements.androidVersion.equals("10")) {
+
             totalAudioCodecLocks = audioLocks + audioLocks2 - 2;
             Assert.assertEquals(totalAudioCodecLocks, 12);
         }
-
     }
 
     @Test(priority = 7)
@@ -400,7 +401,18 @@ public class ZoiperBasicFeatures extends activeDriver {
             zoiperElements.navigateBack(driver).click();
         }
         Assert.assertEquals(presenceLock, 0);
-        Assert.assertEquals((audioLocks1 + audioLocks2), 0);
+        //What really matters is the size of the screen not the android version
+        int totalAudioCodecLocks;
+
+        if (zoiperElements.androidVersion.equals("7.0")) {
+
+            totalAudioCodecLocks = audioLocks1 + audioLocks2;
+            Assert.assertEquals(totalAudioCodecLocks, 0);
+        } else if (zoiperElements.androidVersion.equals("10")) {
+
+            totalAudioCodecLocks = audioLocks1 + audioLocks2;
+            Assert.assertEquals(totalAudioCodecLocks, 0);
+        }
         //TODO verify presence is working
     }
 
@@ -485,7 +497,7 @@ public class ZoiperBasicFeatures extends activeDriver {
             zoiperElements.mergedDesktopNumber(driver).isDisplayed();
         } catch (NoSuchElementException e) {
             driver.findElement(MobileBy.AndroidUIAutomator
-                    ("new UiSelector().text(\""+ zoiperElements.dialedDesktopNumber+"\");")).isDisplayed();
+                    ("new UiSelector().text(\"" + zoiperElements.dialedDesktopNumber + "\");")).isDisplayed();
         }
         driver.navigate().back();
         zoiperElements.endCallButton(driver).click();
