@@ -216,8 +216,8 @@ public class ZoiperBasicFeatures extends activeDriver {
             Assert.assertEquals(totalAudioCodecLocks, 9);
         } else if (zoiperElements.androidVersion.equals("10")) {
 
-            totalAudioCodecLocks = audioLocks + audioLocks2 - 2;
-            Assert.assertEquals(totalAudioCodecLocks, 12);
+            totalAudioCodecLocks = audioLocks + audioLocks2 - 5;
+            Assert.assertEquals(totalAudioCodecLocks, 9);
         }
     }
 
