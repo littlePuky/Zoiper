@@ -207,7 +207,17 @@ public class ZoiperBasicFeatures extends activeDriver {
         for (int backClicks = 4; backClicks >= 1; backClicks--) {
             zoiperElements.navigateBack(driver).click();
         }
-        Assert.assertEquals((audioLocks + audioLocks2 - 2), 9);
+        //What really matters is the size of the screen not the android version
+        int totalAudioCodecLocks;
+        if (zoiperElements.androidVersion.equals("7.0")){
+            totalAudioCodecLocks = audioLocks + audioLocks2 - 2;
+            Assert.assertEquals(totalAudioCodecLocks, 9);
+        }
+        else if (zoiperElements.androidVersion.equals("10")){
+            totalAudioCodecLocks = audioLocks + audioLocks2 - 2;
+            Assert.assertEquals(totalAudioCodecLocks, 12);
+        }
+
     }
 
     @Test(priority = 7)
