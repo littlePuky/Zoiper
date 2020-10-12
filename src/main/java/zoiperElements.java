@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 public class zoiperElements {
     private static WebElement element;
     private static MobileElement mobileElement;
-    public static String apkPath = "C:/Users/Alex/Desktop/zoiper_2.16.4_434_release.apk";
+    public static String apkPath = "C:\\Users\\zedd\\Desktop\\zoiper_2.16.4_434_release.apk";
     public static String hostAddress = "sip4.zoiper.com";//"10.2.1.99:6060"
-    public static String appiumAddress = "http://localhost:4723/wd/hub";
+    public static String appiumDefaultAddress = "http://localhost:4723/wd/hub";
     public static String defaultAccNumber = "3030";
     public static String secondAccNumber = "2000";
     public static String thirdAccNumber = "3000";
@@ -30,7 +30,11 @@ public class zoiperElements {
     public static String textViewClass = "android.widget.TextView";
     public static String accListId = "com.zoiper.android.app:id/account_list_row_id";
     public static String flipperId = "com.zoiper.android.app:id/viewFlipper";
-    public static String googlePlayAcc = "qa8.zoiper@gmail.com";
+    public static String googlePlayAcc = "qa7.zoiper@gmail.com";
+    public static String deviceA = "BUC7N17210014404";
+    public static String deviceB = "W6HDU16330004020";
+    public static String appiumAddressA = "http://localhost:1000/wd/hub";
+    public static String appiumAddressB = "http://localhost:1001/wd/hub";
     public static int messageCounter;
     public static boolean isSubscribed = false;
 
