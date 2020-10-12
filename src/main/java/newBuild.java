@@ -1,6 +1,5 @@
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -18,12 +17,11 @@ public class newBuild extends twoDrivers {
         try {
             bDriver.findElement(MobileBy.AndroidUIAutomator
                     ("new UiSelector().description(\"Speaker\");")).isDisplayed();
-            AndroidElement element = bDriver.findElement(By.className("android.widget.RelativeLayout"));
-            Dimension size = element.getSize();
-            int x = size.width / 2;
-            int y = (int) (size.height * 0.7);
-            int declineCallX = (int) (size.width * 0.1);
-            int declineCallY = (int) (size.height * 0.7);
+            Dimension ScreenSize = bDriver.findElement(By.className("android.widget.RelativeLayout")).getSize();
+            int x = ScreenSize.width / 2;
+            int y = (int) (ScreenSize.height * 0.7);
+            int declineCallX = (int) (ScreenSize.width * 0.1);
+            int declineCallY = (int) (ScreenSize.height * 0.7);
             TouchAction touchAction = new TouchAction(bDriver);
             touchAction.longPress(PointOption.point(x, y)).moveTo(PointOption.point(declineCallX, declineCallY)).release().perform();
         } catch (Exception e) {
