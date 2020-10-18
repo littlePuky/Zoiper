@@ -758,4 +758,16 @@ public class zoiperElements {
         return mobileElement;
     }
 
+    public static WebElement dismissButton(AndroidDriver<AndroidElement> driver) {
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().description(\"Dismiss\");"));
+        return mobileElement;
+    }
+
+    public static WebElement speakerInCallButton(AndroidDriver<AndroidElement> driver) {
+        mobileElement = driver.findElement(MobileBy.AndroidUIAutomator
+                ("new UiSelector().description(\"Speaker\");"));
+        return mobileElement;
+    }
+
 }
